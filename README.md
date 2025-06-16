@@ -2,7 +2,7 @@
 
 A beautiful, interactive web application for cooking enthusiasts featuring step-by-step recipe guidance, dark/light themes, and engaging animations.
 
-Preview : 
+Preview : https://sensational-muffin-4f83b7.netlify.app/
 
 ## ✨ Features
 
