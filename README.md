@@ -42,7 +42,7 @@ Preview : https://sensational-muffin-4f83b7.netlify.app/
 
 1. **Download the project files**
    \`\`\`bash
-   git clone https://github.com/yourusername/interactive-recipe-collection.git
+   git clone https://github.com/dhvani1215/interactive-recipe-collection.git
    cd interactive-recipe-collection
    \`\`\`
 
@@ -61,16 +61,6 @@ Preview : https://sensational-muffin-4f83b7.netlify.app/
    - Browse recipes using the tab navigation
    - Click "Start Cooking" to begin step-by-step guidance
    - Toggle between light and dark themes using the theme switcher
-
-## 📁 Project Structure
-
-\`\`\`
-interactive-recipe-collection/
-├── index.html          # Main HTML structure
-├── styles.css          # All styling and themes
-├── script.js           # JavaScript functionality
-└── README.md           # Project documentation
-\`\`\`
 
 ### File Descriptions
 
