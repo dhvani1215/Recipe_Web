@@ -2,7 +2,7 @@
 
 A beautiful, interactive web application for cooking enthusiasts featuring step-by-step recipe guidance, dark/light themes, and engaging animations.
 
-![Recipe Collection Preview](https://via.placeholder.com/800x400/B8B5D1/FFFFFF?text=Interactive+Recipe+Collection)
+Preview : 
 
 ## ✨ Features
 
@@ -97,16 +97,6 @@ interactive-recipe-collection/
 - **Interactive Ingredients**: Click ingredient items to mark them visually
 - **Keyboard Shortcuts**: Press ESC to close modal dialogs
 
-## 🍽️ Available Recipes
-
-| Recipe | Prep Time | Cook Time | Servings | Difficulty |
-|--------|-----------|-----------|----------|------------|
-| 🍰 Chocolate Cake | 30 min | 45 min | 8-10 | Medium |
-| 🍝 Pasta Primavera | 20 min | 25 min | 4-6 | Easy |
-| 🍛 Chicken Curry | 25 min | 40 min | 4-5 | Medium |
-| 🥤 Berry Smoothie | 5 min | 0 min | 2 | Easy |
-| 🥖 Garlic Bread | 10 min | 15 min | 4-6 | Easy |
-
 ## 🎨 Customization
 
 ### Adding New Recipes
@@ -156,44 +146,3 @@ interactive-recipe-collection/
 - Optimized animations using CSS transforms
 - Efficient DOM manipulation
 - Minimal reflows and repaints
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/new-recipe`
-3. **Make your changes**: Add recipes, improve styling, fix bugs
-4. **Test thoroughly**: Ensure all features work across devices
-5. **Submit a pull request**: Describe your changes clearly
-
-### Contribution Ideas
-- 🍕 Add new recipes with different cuisines
-- 🎨 Create additional color themes
-- 📱 Improve mobile experience
-- ♿ Enhance accessibility features
-- 🌍 Add internationalization support
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Color palette inspired by modern cooking aesthetics
-- Icons and emojis for enhanced visual appeal
-- Responsive design principles for optimal user experience
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-1. **Check the Issues**: Look for existing solutions in the GitHub issues
-2. **Create an Issue**: Report bugs or request features
-3. **Documentation**: Refer to code comments for implementation details
-
----
-
-**Happy Cooking! 👨‍🍳👩‍🍳**
-
-*Made with ❤️ for cooking enthusiasts everywhere*
