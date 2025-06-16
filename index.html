@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Recipe Collection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <div class="toggle-switch">
+            <span class="toggle-icon">☀️</span>
+            <div class="toggle-slider"></div>
+            <span class="toggle-icon">🌙</span>
+        </div>
+    </div>
+
+    <!-- Print Button -->
+    <button class="print-btn" onclick="printRecipe()">🖨️ Print Recipe</button>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-icon" id="modal-icon">🎉</div>
+            <h2 class="modal-title" id="modal-title">Success!</h2>
+            <p class="modal-message" id="modal-message">Your recipe is ready!</p>
+            <button class="modal-button" onclick="closeModal()">Awesome!</button>
+        </div>
+    </div>
+
+    <div class="recipe-selector">
+        <div class="recipe-tabs">
+            <button class="recipe-tab active" onclick="switchRecipe('chocolate-cake')">🍰 Chocolate Cake</button>
+            <button class="recipe-tab" onclick="switchRecipe('pasta-primavera')">🍝 Pasta Primavera</button>
+            <button class="recipe-tab" onclick="switchRecipe('chicken-curry')">🍛 Chicken Curry</button>
+            <button class="recipe-tab" onclick="switchRecipe('berry-smoothie')">🥤 Berry Smoothie</button>
+            <button class="recipe-tab" onclick="switchRecipe('garlic-bread')">🥖 Garlic Bread</button>
+        </div>
+    </div>
+
+    <!-- Chocolate Cake Recipe -->
+    <div class="recipe-card active" id="chocolate-cake">
+        <div class="recipe-container">
+            <div class="recipe-header">
+                <h1 class="recipe-title">Decadent Chocolate Cake</h1>
+                <p class="recipe-subtitle">Rich, moist, and absolutely irresistible</p>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Delicious Chocolate Cake" class="recipe-image">
+
+            <div class="recipe-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">⏱️</div>
+                    <div class="meta-label">Prep Time</div>
+                    <div class="meta-value">30 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">🔥</div>
+                    <div class="meta-label">Cook Time</div>
+                    <div class="meta-value">45 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">👥</div>
+                    <div class="meta-label">Servings</div>
+                    <div class="meta-value">8-10 people</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">📊</div>
+                    <div class="meta-label">Difficulty</div>
+                    <div class="meta-value">Medium</div>
+                </div>
+            </div>
+
+            <div class="recipe-content">
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('chocolate-cake', 'ingredients')">
+                        <h2 class="section-title">🥄 Ingredients</h2>
+                        <button class="toggle-btn" id="chocolate-cake-ingredients-toggle">Show Ingredients</button>
+                    </div>
+                    <div class="section-content" id="chocolate-cake-ingredients-content">
+                        <ul class="ingredients-list">
+                            <li class="ingredient-item">2 cups all-purpose flour</li>
+                            <li class="ingredient-item">2 cups granulated sugar</li>
+                            <li class="ingredient-item">3/4 cup unsweetened cocoa powder</li>
+                            <li class="ingredient-item">2 teaspoons baking soda</li>
+                            <li class="ingredient-item">1 teaspoon baking powder</li>
+                            <li class="ingredient-item">1 teaspoon salt</li>
+                            <li class="ingredient-item">2 large eggs</li>
+                            <li class="ingredient-item">1 cup buttermilk</li>
+                            <li class="ingredient-item">1 cup strong black coffee (cooled)</li>
+                            <li class="ingredient-item">1/2 cup vegetable oil</li>
+                            <li class="ingredient-item">1 teaspoon vanilla extract</li>
+                            <li class="ingredient-item">1 cup chocolate chips (optional)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('chocolate-cake', 'instructions')">
+                        <h2 class="section-title">👨‍🍳 Instructions</h2>
+                        <button class="toggle-btn" id="chocolate-cake-instructions-toggle">Show Instructions</button>
+                    </div>
+                    <div class="cooking-controls">
+                        <button class="start-cooking-btn" onclick="startCooking('chocolate-cake')">🚀 Start Cooking</button>
+                        <button class="next-step-btn" onclick="nextStep('chocolate-cake')">Next Step ➡️</button>
+                        <button class="reset-btn" onclick="resetCooking('chocolate-cake')">🔄 Reset</button>
+                        
+                        <div class="timer-display" id="chocolate-cake-timer-display">
+                            Time Remaining: <span id="chocolate-cake-timer-text">75:00</span>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar" id="chocolate-cake-progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="section-content" id="chocolate-cake-instructions-content">
+                        <ol class="steps-list" id="chocolate-cake-steps-list">
+                            <li class="step-item">
+                                <span class="step-number">1</span>
+                                Preheat your oven to 350°F (175°C). Grease two 9-inch round cake pans and dust with cocoa powder.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">2</span>
+                                In a large bowl, whisk together flour, sugar, cocoa powder, baking soda, baking powder, and salt.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">3</span>
+                                In another bowl, beat eggs, then add buttermilk, coffee, oil, and vanilla extract. Mix well.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">4</span>
+                                Gradually add the wet ingredients to the dry ingredients, mixing until just combined. Don't overmix.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">5</span>
+                                Fold in chocolate chips if using. The batter will be thin - this is normal!
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">6</span>
+                                Divide batter evenly between prepared pans. Bake for 30-35 minutes or until a toothpick comes out clean.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">7</span>
+                                Cool in pans for 10 minutes, then turn out onto wire racks to cool completely.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">8</span>
+                                Once cooled, frost with your favorite chocolate frosting and enjoy your masterpiece!
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pasta Primavera Recipe -->
+    <div class="recipe-card" id="pasta-primavera">
+        <div class="recipe-container">
+            <div class="recipe-header">
+                <h1 class="recipe-title">Fresh Pasta Primavera</h1>
+                <p class="recipe-subtitle">Colorful vegetables in a light, creamy sauce</p>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Fresh Pasta Primavera" class="recipe-image">
+
+            <div class="recipe-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">⏱️</div>
+                    <div class="meta-label">Prep Time</div>
+                    <div class="meta-value">20 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">🔥</div>
+                    <div class="meta-label">Cook Time</div>
+                    <div class="meta-value">25 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">👥</div>
+                    <div class="meta-label">Servings</div>
+                    <div class="meta-value">4-6 people</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">📊</div>
+                    <div class="meta-label">Difficulty</div>
+                    <div class="meta-value">Easy</div>
+                </div>
+            </div>
+
+            <div class="recipe-content">
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('pasta-primavera', 'ingredients')">
+                        <h2 class="section-title">🥄 Ingredients</h2>
+                        <button class="toggle-btn" id="pasta-primavera-ingredients-toggle">Show Ingredients</button>
+                    </div>
+                    <div class="section-content" id="pasta-primavera-ingredients-content">
+                        <ul class="ingredients-list">
+                            <li class="ingredient-item">1 lb penne or fettuccine pasta</li>
+                            <li class="ingredient-item">2 cups broccoli florets</li>
+                            <li class="ingredient-item">1 red bell pepper, sliced</li>
+                            <li class="ingredient-item">1 yellow bell pepper, sliced</li>
+                            <li class="ingredient-item">1 zucchini, sliced</li>
+                            <li class="ingredient-item">1 cup cherry tomatoes, halved</li>
+                            <li class="ingredient-item">3 cloves garlic, minced</li>
+                            <li class="ingredient-item">1 cup heavy cream</li>
+                            <li class="ingredient-item">1/2 cup grated Parmesan cheese</li>
+                            <li class="ingredient-item">2 tbsp olive oil</li>
+                            <li class="ingredient-item">Salt and pepper to taste</li>
+                            <li class="ingredient-item">Fresh basil for garnish</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('pasta-primavera', 'instructions')">
+                        <h2 class="section-title">👨‍🍳 Instructions</h2>
+                        <button class="toggle-btn" id="pasta-primavera-instructions-toggle">Show Instructions</button>
+                    </div>
+                    <div class="cooking-controls">
+                        <button class="start-cooking-btn" onclick="startCooking('pasta-primavera')">🚀 Start Cooking</button>
+                        <button class="next-step-btn" onclick="nextStep('pasta-primavera')">Next Step ➡️</button>
+                        <button class="reset-btn" onclick="resetCooking('pasta-primavera')">🔄 Reset</button>
+                        
+                        <div class="timer-display" id="pasta-primavera-timer-display">
+                            Time Remaining: <span id="pasta-primavera-timer-text">45:00</span>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar" id="pasta-primavera-progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="section-content" id="pasta-primavera-instructions-content">
+                        <ol class="steps-list" id="pasta-primavera-steps-list">
+                            <li class="step-item">
+                                <span class="step-number">1</span>
+                                Bring a large pot of salted water to boil. Cook pasta according to package directions until al dente.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">2</span>
+                                While pasta cooks, heat olive oil in a large skillet over medium-high heat.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">3</span>
+                                Add broccoli and bell peppers to skillet. Cook for 3-4 minutes until slightly tender.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">4</span>
+                                Add zucchini and garlic. Cook for another 2-3 minutes until fragrant.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">5</span>
+                                Add cherry tomatoes and cook for 2 minutes until they start to soften.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">6</span>
+                                Pour in heavy cream and bring to a gentle simmer. Season with salt and pepper.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">7</span>
+                                Drain pasta and add to the skillet with vegetables. Toss to combine.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">8</span>
+                                Add Parmesan cheese and fresh basil. Serve immediately while hot!
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chicken Curry Recipe -->
+    <div class="recipe-card" id="chicken-curry">
+        <div class="recipe-container">
+            <div class="recipe-header">
+                <h1 class="recipe-title">Aromatic Chicken Curry</h1>
+                <p class="recipe-subtitle">Tender chicken in a rich, spiced coconut sauce</p>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Aromatic Chicken Curry" class="recipe-image">
+
+            <div class="recipe-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">⏱️</div>
+                    <div class="meta-label">Prep Time</div>
+                    <div class="meta-value">25 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">🔥</div>
+                    <div class="meta-label">Cook Time</div>
+                    <div class="meta-value">40 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">👥</div>
+                    <div class="meta-label">Servings</div>
+                    <div class="meta-value">4-5 people</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">📊</div>
+                    <div class="meta-label">Difficulty</div>
+                    <div class="meta-value">Medium</div>
+                </div>
+            </div>
+
+            <div class="recipe-content">
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('chicken-curry', 'ingredients')">
+                        <h2 class="section-title">🥄 Ingredients</h2>
+                        <button class="toggle-btn" id="chicken-curry-ingredients-toggle">Show Ingredients</button>
+                    </div>
+                    <div class="section-content" id="chicken-curry-ingredients-content">
+                        <ul class="ingredients-list">
+                            <li class="ingredient-item">2 lbs chicken thighs, cut into chunks</li>
+                            <li class="ingredient-item">1 large onion, diced</li>
+                            <li class="ingredient-item">4 cloves garlic, minced</li>
+                            <li class="ingredient-item">2 tbsp fresh ginger, grated</li>
+                            <li class="ingredient-item">2 tbsp curry powder</li>
+                            <li class="ingredient-item">1 tsp turmeric</li>
+                            <li class="ingredient-item">1 tsp cumin</li>
+                            <li class="ingredient-item">1 can (14oz) coconut milk</li>
+                            <li class="ingredient-item">1 can (14oz) diced tomatoes</li>
+                            <li class="ingredient-item">2 tbsp tomato paste</li>
+                            <li class="ingredient-item">2 tbsp vegetable oil</li>
+                            <li class="ingredient-item">Salt and pepper to taste</li>
+                            <li class="ingredient-item">Fresh cilantro for garnish</li>
+                            <li class="ingredient-item">Basmati rice for serving</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('chicken-curry', 'instructions')">
+                        <h2 class="section-title">👨‍🍳 Instructions</h2>
+                        <button class="toggle-btn" id="chicken-curry-instructions-toggle">Show Instructions</button>
+                    </div>
+                    <div class="cooking-controls">
+                        <button class="start-cooking-btn" onclick="startCooking('chicken-curry')">🚀 Start Cooking</button>
+                        <button class="next-step-btn" onclick="nextStep('chicken-curry')">Next Step ➡️</button>
+                        <button class="reset-btn" onclick="resetCooking('chicken-curry')">🔄 Reset</button>
+                        
+                        <div class="timer-display" id="chicken-curry-timer-display">
+                            Time Remaining: <span id="chicken-curry-timer-text">65:00</span>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar" id="chicken-curry-progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="section-content" id="chicken-curry-instructions-content">
+                        <ol class="steps-list" id="chicken-curry-steps-list">
+                            <li class="step-item">
+                                <span class="step-number">1</span>
+                                Heat oil in a large pot over medium-high heat. Season chicken with salt and pepper.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">2</span>
+                                Brown chicken pieces on all sides, about 6-8 minutes total. Remove and set aside.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">3</span>
+                                In the same pot, add onion and cook until softened, about 5 minutes.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">4</span>
+                                Add garlic, ginger, curry powder, turmeric, and cumin. Cook for 1 minute until fragrant.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">5</span>
+                                Stir in tomato paste and cook for another minute.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">6</span>
+                                Add diced tomatoes and coconut milk. Bring to a simmer.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">7</span>
+                                Return chicken to pot and simmer for 25-30 minutes until chicken is tender.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">8</span>
+                                Taste and adjust seasoning. Serve over basmati rice with fresh cilantro!
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Berry Smoothie Recipe -->
+    <div class="recipe-card" id="berry-smoothie">
+        <div class="recipe-container">
+            <div class="recipe-header">
+                <h1 class="recipe-title">Antioxidant Berry Smoothie</h1>
+                <p class="recipe-subtitle">Refreshing and nutritious breakfast blend</p>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Antioxidant Berry Smoothie" class="recipe-image">
+
+            <div class="recipe-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">⏱️</div>
+                    <div class="meta-label">Prep Time</div>
+                    <div class="meta-value">5 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">🔥</div>
+                    <div class="meta-label">Cook Time</div>
+                    <div class="meta-value">0 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">👥</div>
+                    <div class="meta-label">Servings</div>
+                    <div class="meta-value">2 people</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">📊</div>
+                    <div class="meta-label">Difficulty</div>
+                    <div class="meta-value">Easy</div>
+                </div>
+            </div>
+
+            <div class="recipe-content">
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('berry-smoothie', 'ingredients')">
+                        <h2 class="section-title">🥄 Ingredients</h2>
+                        <button class="toggle-btn" id="berry-smoothie-ingredients-toggle">Show Ingredients</button>
+                    </div>
+                    <div class="section-content" id="berry-smoothie-ingredients-content">
+                        <ul class="ingredients-list">
+                            <li class="ingredient-item">1 cup frozen mixed berries</li>
+                            <li class="ingredient-item">1 banana, sliced</li>
+                            <li class="ingredient-item">1 cup almond milk (or milk of choice)</li>
+                            <li class="ingredient-item">2 tbsp Greek yogurt</li>
+                            <li class="ingredient-item">1 tbsp honey or maple syrup</li>
+                            <li class="ingredient-item">1 tbsp chia seeds</li>
+                            <li class="ingredient-item">1/2 tsp vanilla extract</li>
+                            <li class="ingredient-item">Handful of spinach (optional)</li>
+                            <li class="ingredient-item">Ice cubes as needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('berry-smoothie', 'instructions')">
+                        <h2 class="section-title">👨‍🍳 Instructions</h2>
+                        <button class="toggle-btn" id="berry-smoothie-instructions-toggle">Show Instructions</button>
+                    </div>
+                    <div class="cooking-controls">
+                        <button class="start-cooking-btn" onclick="startCooking('berry-smoothie')">🚀 Start Making</button>
+                        <button class="next-step-btn" onclick="nextStep('berry-smoothie')">Next Step ➡️</button>
+                        <button class="reset-btn" onclick="resetCooking('berry-smoothie')">🔄 Reset</button>
+                        
+                        <div class="timer-display" id="berry-smoothie-timer-display">
+                            Time Remaining: <span id="berry-smoothie-timer-text">5:00</span>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar" id="berry-smoothie-progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="section-content" id="berry-smoothie-instructions-content">
+                        <ol class="steps-list" id="berry-smoothie-steps-list">
+                            <li class="step-item">
+                                <span class="step-number">1</span>
+                                Add almond milk and Greek yogurt to your blender first for easier blending.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">2</span>
+                                Add the frozen berries, banana slices, and spinach if using.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">3</span>
+                                Add honey, vanilla extract, and chia seeds to the blender.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">4</span>
+                                Blend on high speed for 60-90 seconds until smooth and creamy.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">5</span>
+                                Check consistency and add ice cubes if you want it thicker.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">6</span>
+                                Taste and adjust sweetness with more honey if needed.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">7</span>
+                                Pour into glasses and serve immediately for best texture.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">8</span>
+                                Garnish with fresh berries or a sprinkle of chia seeds. Enjoy!
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Garlic Bread Recipe -->
+    <div class="recipe-card" id="garlic-bread">
+        <div class="recipe-container">
+            <div class="recipe-header">
+                <h1 class="recipe-title">Crispy Garlic Bread</h1>
+                <p class="recipe-subtitle">Golden, buttery, and irresistibly aromatic</p>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Crispy Garlic Bread" class="recipe-image">
+
+            <div class="recipe-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">⏱️</div>
+                    <div class="meta-label">Prep Time</div>
+                    <div class="meta-value">10 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">🔥</div>
+                    <div class="meta-label">Cook Time</div>
+                    <div class="meta-value">15 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">👥</div>
+                    <div class="meta-label">Servings</div>
+                    <div class="meta-value">4-6 people</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">📊</div>
+                    <div class="meta-label">Difficulty</div>
+                    <div class="meta-value">Easy</div>
+                </div>
+            </div>
+
+            <div class="recipe-content">
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('garlic-bread', 'ingredients')">
+                        <h2 class="section-title">🥄 Ingredients</h2>
+                        <button class="toggle-btn" id="garlic-bread-ingredients-toggle">Show Ingredients</button>
+                    </div>
+                    <div class="section-content" id="garlic-bread-ingredients-content">
+                        <ul class="ingredients-list">
+                            <li class="ingredient-item">1 large French baguette</li>
+                            <li class="ingredient-item">1/2 cup butter, softened</li>
+                            <li class="ingredient-item">4 cloves garlic, minced</li>
+                            <li class="ingredient-item">2 tbsp fresh parsley, chopped</li>
+                            <li class="ingredient-item">1/4 cup grated Parmesan cheese</li>
+                            <li class="ingredient-item">1/2 tsp salt</li>
+                            <li class="ingredient-item">1/4 tsp black pepper</li>
+                            <li class="ingredient-item">1/4 tsp garlic powder</li>
+                            <li class="ingredient-item">Optional: mozzarella cheese for extra cheesiness</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection('garlic-bread', 'instructions')">
+                        <h2 class="section-title">👨‍🍳 Instructions</h2>
+                        <button class="toggle-btn" id="garlic-bread-instructions-toggle">Show Instructions</button>
+                    </div>
+                    <div class="cooking-controls">
+                        <button class="start-cooking-btn" onclick="startCooking('garlic-bread')">🚀 Start Cooking</button>
+                        <button class="next-step-btn" onclick="nextStep('garlic-bread')">Next Step ➡️</button>
+                        <button class="reset-btn" onclick="resetCooking('garlic-bread')">🔄 Reset</button>
+                        
+                        <div class="timer-display" id="garlic-bread-timer-display">
+                            Time Remaining: <span id="garlic-bread-timer-text">25:00</span>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar" id="garlic-bread-progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="section-content" id="garlic-bread-instructions-content">
+                        <ol class="steps-list" id="garlic-bread-steps-list">
+                            <li class="step-item">
+                                <span class="step-number">1</span>
+                                Preheat your oven to 375°F (190°C). Line a baking sheet with parchment paper.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">2</span>
+                                Cut the baguette in half lengthwise, creating two long pieces.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">3</span>
+                                In a bowl, mix softened butter, minced garlic, parsley, salt, pepper, and garlic powder.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">4</span>
+                                Spread the garlic butter mixture evenly over the cut sides of the bread.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">5</span>
+                                Sprinkle Parmesan cheese over the buttered bread. Add mozzarella if desired.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">6</span>
+                                Place bread cut-side up on the prepared baking sheet.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">7</span>
+                                Bake for 12-15 minutes until golden brown and crispy on the edges.
+                            </li>
+                            <li class="step-item">
+                                <span class="step-number">8</span>
+                                Remove from oven, slice into portions, and serve immediately while hot!
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
